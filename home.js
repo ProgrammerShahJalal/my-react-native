@@ -1,79 +1,112 @@
-import React from 'react';
-import { useDeviceOrientation } from '@react-native-community/hooks';
-import { StyleSheet, View, SafeAreaView, Text, Button, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback, Image, ImageBackground } from 'react-native'
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, KeyboardAvoidingView, Platform, TextInput, TouchableOpacity } from 'react-native';
+import { keyboardProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
+import Task from './components/Task';
+import products from './Products';
 
-const home = ({ navigation }) => {
-  const image = { uri: "https://picsum.photos/200/300" };
-  const { landscape } = useDeviceOrientation();
+const Home = ({ navigation }) => {
+  const [task, setTask] = useState();
+  const [taskItems, setTaskItems] = useState([]);
+
+  const handleAddTask = () => {
+    setTaskItems([...taskItems, task]);
+    setTask(null);
+  }
+
+  const completeTask = (index) => {
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index, 1);
+    setTaskItems(itemsCopy);
+  }
   return (
-    <SafeAreaView style={styles.container}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <View style={styles.paragraph}>
-          <Text numberOfLines={7} onPress={() => { console.log('tapped') }}>
-            This is Shah Jalal, a student of <Text style={{ color: 'darkblue', fontSize: 20 }}>Programming Hero</Text>. I'm an expert in HTML, CSS, React, JavaScript, Bootstrap, Tailwind, Node JS, Express JS, MongoDB, Material UI, React Bootstrap, React Router, React Hook Form, Firebase Authentication, WordPress. I'm also good at Photoshop and Illustrator.
-          </Text>
-          <Button
-            title="Know More"
-            color='goldenrod'
-            onPress={() => { console.log("Button Press") }}
-          ></Button>
+    <View style={styles.container}>
+      <View style={styles.tasksWrapper}>
+        <Text style={styles.sectionTitle}>Today's Tasks</Text>
+        <View style={styles.items}>
+          {
+            taskItems.map((item, index) => {
+              return (
+                <TouchableOpacity key={index} onPress={() => completeTask(index)}>
+                  <Task text={item} />
+                </TouchableOpacity>
+
+              )
+            })
+          }
+          {/* <Task text="task-1" />
+          <Task text="task-2" /> */}
         </View>
-      </ImageBackground>
-      <View style={{ backgroundColor: 'green', width: "100%", height: landscape ? "100%" : "30%" }}>
       </View>
-      <View style={styles.box}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <TouchableOpacity
-          activeOpacity={0.5}>
-          <View style={{ height: 100, width: 100, backgroundColor: 'coral' }}>
+          style={{ backgroundColor: 'blue', borderRadius: 20, margin: 5 }}
+          onPress={() => { navigation.navigate("products") }}
+        >
+          <Text style={{ padding: 15, color: 'white' }}>Visit Products</Text>
+        </TouchableOpacity>
+      </View>
+      {/* write a task */}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.writeTaskWrapper}
+      >
+        <TextInput style={styles.input} placeholder='Write a task' value={task} onChangeText={text => setTask(text)} />
+        <TouchableOpacity onPress={() => handleAddTask()}>
+          <View style={styles.addWrapper}>
+            <Text style={styles.addText}>+</Text>
           </View>
         </TouchableOpacity>
-        <TouchableHighlight
-          activeOpacity={0.6}
-          underlayColor="#DDDDDD"
-          onPress={() => alert('Pressed!')}>
-          <View style={{ height: 100, width: 100, backgroundColor: 'green' }}></View>
-        </TouchableHighlight>
-        <TouchableWithoutFeedback
-          onPress={() => alert('Touchable Without Feedback Clicked!')}>
-          <View style={{ height: 100, width: 100, backgroundColor: 'orange' }}></View>
-        </TouchableWithoutFeedback>
-      </View>
-      <TouchableOpacity
-        style={{ backgroundColor: 'blue', borderRadius: 20, margin: 5 }}
-        onPress={() => { navigation.navigate("products") }}
-      >
-        <Text style={{ padding: 15, color: 'white' }}>Products</Text>
-      </TouchableOpacity>
-      <Image source={require("./assets/favicon.png")} />
-      <Image source={{ uri: "https://picsum.photos/200/300" }}
-        style={{ height: 80, width: 200 }} />
-    </SafeAreaView>
+      </KeyboardAvoidingView>
+    </View>
   )
 }
 
-export default home
+export default Home
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#E8EAED',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
-  image: {
-    flex: 1,
-    justifyContent: "center"
+  tasksWrapper: {
+    paddingTop: 80,
+    paddingHorizontal: 20
   },
-  box: {
-    flex: 1,
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  items: {
+    marginTop: 30
+  },
+  writeTaskWrapper: {
+    position: 'absolute',
+    bottom: 60,
+    width: '100%',
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10
+    justifyContent: 'space-around',
+    alignItems: 'center'
   },
-  paragraph: {
-    textAlign: 'center',
+  input: {
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    backgroundColor: '#FFF',
+    borderRadius: 60,
+    borderColor: '#C0C0C0',
+    borderWidth: 1,
+    width: 250
+  },
+  addWrapper: {
+    width: 60,
+    height: 60,
+    backgroundColor: "#FFF",
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#C0C0C0',
+    borderWidth: 1,
   }
 })

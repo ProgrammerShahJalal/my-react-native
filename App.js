@@ -2,9 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import products from './products';
-import contact from './contact';
-import home from './home';
+import products from './Products';
+import contact from './Contact';
+import home from './Home';
 
 export default function App() {
 

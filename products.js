@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View, Text, ActivityIndicator, FlatList, SafeAreaView, Image } from 'react-native'
 
-const products = ({ navigation }) => {
+const Products = ({ navigation }) => {
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
     useEffect(() => {
@@ -54,7 +54,7 @@ const products = ({ navigation }) => {
     )
 }
 
-export default products
+export default Products
 
 const styles = StyleSheet.create({
     loadingContainer: {
