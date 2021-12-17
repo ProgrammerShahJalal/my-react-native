@@ -1,16 +1,18 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 const Task = (props) => {
     return (
-        <View style={styles.item}>
-            <View style={styles.itemLeft}>
-                <View style={styles.square}>
+        <ScrollView>
+            <View style={styles.item}>
+                <View style={styles.itemLeft}>
+                    <View style={styles.square}>
+                    </View>
+                    <Text style={styles.itemText}>{props.text}</Text>
                 </View>
-                <Text style={styles.itemText}>{props.text}</Text>
+                <View style={styles.circular}></View>
             </View>
-            <View style={styles.circular}></View>
-        </View>
+        </ScrollView>
     )
 }
 

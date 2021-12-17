@@ -6,7 +6,7 @@ const Products = ({ navigation }) => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("https://fakestoreapi.com/products");
+            const response = await fetch("https://young-garden-14257.herokuapp.com/cars");
             const products = await response.json();
             setLoading(false);
             setProducts(products);
@@ -21,22 +21,30 @@ const Products = ({ navigation }) => {
         )
     }
     const renderProductItem = ({ item, index }) => {
-        const { title, price, image, category } = item;
+        const { name, price, img, description } = item;
         return (
             <View style={{ flex: 1, borderWidth: 1, borderColor: '#ccc', borderRadius: 12, margin: 4, padding: 15 }}>
                 <Image
                     style={{ width: "100%", height: 200 }}
-                    source={{ uri: image }}
+                    source={{ uri: img }}
                     resizeMode='contain'
                 />
                 <View style={{ marginTop: 16 }}>
-                    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{title}</Text>
+                    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{name}</Text>
                     <Text style={{ marginTop: 4 }}>
-                        {`Category: ${category}`}
+                        {`${description}`}
                     </Text>
                     <Text style={{ marginTop: 4 }}>
                         {`Price: $${price}`}
                     </Text>
+                    <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                        <TouchableOpacity
+                            style={{ backgroundColor: 'coral', borderRadius: 20, margin: 5 }}
+                            onPress={() => { navigation.navigate("Details") }}
+                        >
+                            <Text style={{ paddingHorizontal: 15, paddingVertical: 6, color: 'white' }}>Details</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
 
@@ -48,7 +56,7 @@ const Products = ({ navigation }) => {
                 renderItem={renderProductItem}
                 keyExtractor={(item, index) => index.toString()}
                 contentContainerStyle={{ padding: 20 }}
-                numColumns={2}
+                numColumns={1}
             />
         </SafeAreaView>
     )
