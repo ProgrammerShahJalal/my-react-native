@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
-const Contact = ({ navigation }) => {
+const About = ({ navigation }) => {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Contact page</Text>
+            <Text>About page</Text>
         </View>
     )
 }
 
-export default Contact
+export default About
 
 const styles = StyleSheet.create({})

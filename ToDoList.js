@@ -13,6 +13,7 @@ const ToDoList = ({ navigation }) => {
     }
 
     const completeTask = (index) => {
+        alert('Your Task Completed Successfully!');
         let itemsCopy = [...taskItems];
         itemsCopy.splice(index, 1);
         setTaskItems(itemsCopy);
@@ -54,14 +55,7 @@ const ToDoList = ({ navigation }) => {
                 </KeyboardAvoidingView>
 
             </View>
-            <View style={{ justifyContent: 'flex-end', alignItems: 'center', backgroundColor: '#E8EAED' }}>
-                <TouchableOpacity
-                    style={{ backgroundColor: 'blue', borderRadius: 20, margin: 5 }}
-                    onPress={() => { navigation.navigate("Products") }}
-                >
-                    <Text style={{ padding: 15, color: 'white' }}>Visit Products</Text>
-                </TouchableOpacity>
-            </View>
+
         </>
     )
 }
@@ -73,8 +67,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         backgroundColor: '#E8EAED',
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
     tasksWrapper: {
         width: '100%',
