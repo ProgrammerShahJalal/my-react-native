@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, TouchableOpacity, View, Text, ActivityIndicator, FlatList, SafeAreaView, Image } from 'react-native'
+import { StyleSheet, View, Text, ActivityIndicator, FlatList, SafeAreaView, Image } from 'react-native'
 
 const Products = ({ navigation }) => {
     const [loading, setLoading] = useState(true);
@@ -37,14 +37,6 @@ const Products = ({ navigation }) => {
                     <Text style={{ marginTop: 4 }}>
                         {`Price: $${price}`}
                     </Text>
-                    <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                        <TouchableOpacity
-                            style={{ backgroundColor: 'coral', borderRadius: 20, margin: 5 }}
-                            onPress={() => { navigation.navigate("Details") }}
-                        >
-                            <Text style={{ paddingHorizontal: 15, paddingVertical: 6, color: 'white' }}>Details</Text>
-                        </TouchableOpacity>
-                    </View>
                 </View>
             </View>
 
