@@ -15,7 +15,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="Home" component={Home} options={{ title: 'Car App Home' }} />
         <Drawer.Screen name="Mange Todo List" component={ToDoList} />
         <Drawer.Screen name="Car Explore" component={Products} />
         <Drawer.Screen name="About Us" component={About} />

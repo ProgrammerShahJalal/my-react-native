@@ -8,8 +8,16 @@ const ToDoList = ({ navigation }) => {
     const [taskItems, setTaskItems] = useState([]);
 
     const handleAddTask = () => {
-        setTaskItems([...taskItems, task]);
-        setTask(null);
+        let fool = "What's Up, why are you lazy?";
+        if (task === null) {
+            alert("Don't add empty task");
+            setTask("Don't be lazy, Go hunt your dream!")
+        }
+        else {
+            setTaskItems([...taskItems, task]);
+            setTask(null);
+        }
+
     }
 
     const completeTask = (index) => {

@@ -1,6 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
-
+import { StyleSheet, Text, View, Image, Button } from 'react-native'
 
 const Home = ({ navigation }) => {
   return (
@@ -9,12 +8,18 @@ const Home = ({ navigation }) => {
       <Image
         style={{ width: "100%", height: 200 }}
         source={require('./images/car.png')}
-        resizeMode='cover'
+        resizeMode='contain'
       />
+      <Button
+        title="Update Title" onPress={() => navigation.setOptions({ title: 'Updated Home' })}
+      />
+
     </View>
   )
 }
 
 export default Home
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+})
