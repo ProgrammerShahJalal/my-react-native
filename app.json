@@ -2,6 +2,7 @@
   "expo": {
     "name": "my-react-native",
     "slug": "my-react-native",
+    "description": "This is my react-native app.",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
